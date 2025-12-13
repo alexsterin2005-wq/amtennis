@@ -345,7 +345,16 @@
       };
 
       try {
+        // Send email to customer
         await emailjs.send('service_38t1lwl', 'template_op0e8ca', templateParams);
+        
+        // Send notification to business email
+        const businessParams = {
+          ...templateParams,
+          email: 'amtennis2005@gmail.com'
+        };
+        await emailjs.send('service_38t1lwl', 'template_op0e8ca', businessParams);
+        
         return true;
       } catch (err) {
         console.error('Email error:', err);
