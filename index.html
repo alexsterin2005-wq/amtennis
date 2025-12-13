@@ -732,6 +732,9 @@
                 <button onclick="switchView('booking')" class="px-6 py-2 rounded-full font-semibold transition ${state.view === 'booking' ? 'bg-white text-black' : 'bg-gray-800 text-white hover:bg-gray-700'}">
                   📅 Book
                 </button>
+                <button onclick="switchView('fitness')" class="px-6 py-2 rounded-full font-semibold transition ${state.view === 'fitness' ? 'bg-white text-black' : 'bg-gray-800 text-white hover:bg-gray-700'}">
+                  💪 Fitness
+                </button>
                 <button onclick="switchView('stringing')" class="px-6 py-2 rounded-full font-semibold transition ${state.view === 'stringing' ? 'bg-white text-black' : 'bg-gray-800 text-white hover:bg-gray-700'}">
                   🎾 Stringing
                 </button>
@@ -759,6 +762,7 @@
 
           <main class="py-8">
             ${state.view === 'booking' ? renderBookingView() : 
+              state.view === 'fitness' ? renderFitnessView() :
               state.view === 'stringing' ? renderStringingView() :
               state.view === 'contact' ? renderContactView() : 
               state.view === 'login' ? renderLoginView() :
@@ -777,6 +781,7 @@
                   <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
                   <div class="space-y-2 text-sm">
                     <div><button onclick="switchView('booking')" class="text-gray-400 hover:text-white transition">Book a Lesson</button></div>
+                    <div><button onclick="switchView('fitness')" class="text-gray-400 hover:text-white transition">Fitness Training</button></div>
                     <div><button onclick="switchView('stringing')" class="text-gray-400 hover:text-white transition">Racquet Stringing</button></div>
                     <div><button onclick="switchView('contact')" class="text-gray-400 hover:text-white transition">Contact Us</button></div>
                   </div>
@@ -1132,6 +1137,197 @@
               <button onclick="switchView('booking')" class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-blue-700 transition">
                 📅 Book a Lesson
               </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderFitnessView() {
+      return `
+        <div class="max-w-6xl mx-auto p-6">
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-4xl font-bold mb-6 text-center">💪 Tennis Fitness Training</h2>
+            <p class="text-xl text-gray-600 text-center mb-8">Elevate your game with specialized fitness training designed for tennis players</p>
+            
+            <!-- Program Overview -->
+            <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-8 mb-8">
+              <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-shrink-0">
+                  <div class="w-48 h-48 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-7xl shadow-lg">
+                    🏋️
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-3xl font-bold mb-3">Complete Athlete Development</h3>
+                  <p class="text-lg text-gray-700 mb-4">Our fitness program is specifically designed to enhance your tennis performance through targeted strength, speed, agility, and endurance training.</p>
+                  <div class="bg-white rounded-lg p-4">
+                    <div class="flex items-center gap-2 text-lg">
+                      <span class="text-2xl">🎯</span>
+                      <span class="font-semibold">Tennis-Specific Training Programs</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Training Components -->
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold mb-6 text-center">What's Included</h3>
+              <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-blue-50 border-2 border-blue-300 rounded-xl p-6 text-center hover:shadow-lg transition">
+                  <div class="text-5xl mb-3">💪</div>
+                  <h4 class="text-xl font-bold mb-2">Strength Training</h4>
+                  <p class="text-gray-600 text-sm">Build power for stronger serves and groundstrokes</p>
+                </div>
+                
+                <div class="bg-green-50 border-2 border-green-300 rounded-xl p-6 text-center hover:shadow-lg transition">
+                  <div class="text-5xl mb-3">⚡</div>
+                  <h4 class="text-xl font-bold mb-2">Speed & Agility</h4>
+                  <p class="text-gray-600 text-sm">Improve court coverage and reaction time</p>
+                </div>
+                
+                <div class="bg-purple-50 border-2 border-purple-300 rounded-xl p-6 text-center hover:shadow-lg transition">
+                  <div class="text-5xl mb-3">🏃</div>
+                  <h4 class="text-xl font-bold mb-2">Endurance</h4>
+                  <p class="text-gray-600 text-sm">Maintain peak performance throughout long matches</p>
+                </div>
+                
+                <div class="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-6 text-center hover:shadow-lg transition">
+                  <div class="text-5xl mb-3">🧘</div>
+                  <h4 class="text-xl font-bold mb-2">Flexibility</h4>
+                  <p class="text-gray-600 text-sm">Prevent injuries and improve range of motion</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pricing Options -->
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold mb-6 text-center">Pricing Options</h3>
+              <div class="grid md:grid-cols-3 gap-6">
+                <!-- Single Session -->
+                <div class="bg-white border-2 border-gray-300 rounded-xl p-6 hover:shadow-lg transition">
+                  <div class="text-center">
+                    <div class="text-4xl mb-4">🎫</div>
+                    <h4 class="text-2xl font-bold mb-2">Single Session</h4>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">$50</div>
+                    <p class="text-gray-600 mb-4">60-minute session</p>
+                    <ul class="text-left text-sm text-gray-600 space-y-2 mb-4">
+                      <li>✓ Personalized workout</li>
+                      <li>✓ Professional coaching</li>
+                      <li>✓ Progress tracking</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <!-- 5-Session Package -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-500 rounded-xl p-6 hover:shadow-xl transition transform hover:-translate-y-1">
+                  <div class="text-center">
+                    <div class="bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">POPULAR</div>
+                    <div class="text-4xl mb-4">📦</div>
+                    <h4 class="text-2xl font-bold mb-2">5-Session Package</h4>
+                    <div class="text-4xl font-bold text-blue-600 mb-1">$225</div>
+                    <div class="text-sm text-gray-600 mb-2">($45/session - Save $25)</div>
+                    <p class="text-gray-600 mb-4">5x 60-minute sessions</p>
+                    <ul class="text-left text-sm text-gray-600 space-y-2 mb-4">
+                      <li>✓ Customized program</li>
+                      <li>✓ Nutrition guidance</li>
+                      <li>✓ Weekly progress reviews</li>
+                      <li>✓ Best value</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <!-- 10-Session Package -->
+                <div class="bg-white border-2 border-green-500 rounded-xl p-6 hover:shadow-lg transition">
+                  <div class="text-center">
+                    <div class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">BEST DEAL</div>
+                    <div class="text-4xl mb-4">🏆</div>
+                    <h4 class="text-2xl font-bold mb-2">10-Session Package</h4>
+                    <div class="text-4xl font-bold text-green-600 mb-1">$400</div>
+                    <div class="text-sm text-gray-600 mb-2">($40/session - Save $100)</div>
+                    <p class="text-gray-600 mb-4">10x 60-minute sessions</p>
+                    <ul class="text-left text-sm text-gray-600 space-y-2 mb-4">
+                      <li>✓ Complete transformation</li>
+                      <li>✓ Meal planning support</li>
+                      <li>✓ Monthly assessments</li>
+                      <li>✓ Maximum savings</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefits -->
+            <div class="bg-gray-50 rounded-xl p-6 mb-8">
+              <h3 class="text-xl font-bold mb-4 text-center">Why Add Fitness Training?</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="flex gap-3">
+                  <div class="text-2xl">🎾</div>
+                  <div>
+                    <div class="font-semibold">Improve On-Court Performance</div>
+                    <div class="text-sm text-gray-600">Enhanced power, speed, and endurance translate directly to better match results</div>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <div class="text-2xl">🛡️</div>
+                  <div>
+                    <div class="font-semibold">Injury Prevention</div>
+                    <div class="text-sm text-gray-600">Strengthen muscles and joints to reduce risk of common tennis injuries</div>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <div class="text-2xl">⚡</div>
+                  <div>
+                    <div class="font-semibold">Faster Recovery</div>
+                    <div class="text-sm text-gray-600">Better conditioning means quicker recovery between points and matches</div>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <div class="text-2xl">📈</div>
+                  <div>
+                    <div class="font-semibold">Long-Term Development</div>
+                    <div class="text-sm text-gray-600">Build a foundation for continued improvement and competitive success</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Who It's For -->
+            <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 mb-8">
+              <h3 class="text-xl font-bold mb-4 text-center">Who Should Train?</h3>
+              <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div class="text-4xl mb-2">🌟</div>
+                  <div class="font-semibold">Beginners</div>
+                  <div class="text-sm text-gray-600">Build foundational fitness for tennis success</div>
+                </div>
+                <div>
+                  <div class="text-4xl mb-2">🎯</div>
+                  <div class="font-semibold">Competitive Players</div>
+                  <div class="text-sm text-gray-600">Gain the edge over your opponents</div>
+                </div>
+                <div>
+                  <div class="text-4xl mb-2">🏅</div>
+                  <div class="font-semibold">Tournament Players</div>
+                  <div class="text-sm text-gray-600">Peak performance when it matters most</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="text-center bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl p-8">
+              <h3 class="text-2xl font-bold mb-4">Ready to Transform Your Game?</h3>
+              <p class="text-lg mb-6">Contact us to schedule your fitness assessment and start your training program</p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:+12677387290" class="bg-white text-orange-600 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition inline-block">
+                  📞 Call: (267) 738-7290
+                </a>
+                <a href="mailto:amtennis2005@gmail.com" class="bg-white text-red-600 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition inline-block">
+                  ✉️ Email Us
+                </a>
+              </div>
+              <p class="text-sm mt-4 opacity-90">Combine with tennis lessons for the ultimate development program!</p>
             </div>
           </div>
         </div>
