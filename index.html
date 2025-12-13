@@ -13,6 +13,15 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .tennis-ball-spinner {
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      font-size: 3rem;
+    }
   </style>
 </head>
 <body class="bg-gray-100">
@@ -381,7 +390,8 @@
       render();
 
       const price = state.duration === '60' ? 65 : 97.5;
-      const bookingId = `booking:${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const bookingNumber = 1000 + state.bookings.length + 1;
+      const bookingId = `#${bookingNumber}`;
       
       const bookingData = {
         id: bookingId,
@@ -455,8 +465,9 @@
       
       if (state.loading) {
         app.innerHTML = `
-          <div class="min-h-screen flex items-center justify-center">
-            <div class="text-xl">Loading...</div>
+          <div class="min-h-screen flex flex-col items-center justify-center">
+            <div class="tennis-ball-spinner">🎾</div>
+            <div class="text-xl mt-4 text-gray-600">Loading...</div>
           </div>
         `;
         return;
@@ -585,17 +596,20 @@
 
               <div>
                 <label class="block text-sm font-semibold mb-2">Lesson Length</label>
-                <select id="duration" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                <select id="duration" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500" onchange="updatePrice()">
                   <option value="60" ${state.duration === '60' ? 'selected' : ''}>60 Minutes ($65)</option>
                   <option value="90" ${state.duration === '90' ? 'selected' : ''}>90 Minutes ($97.50)</option>
                 </select>
                 <div class="text-sm text-gray-600 mt-1">Rate: $65 per hour</div>
+                <div id="priceDisplay" class="mt-2 p-3 bg-green-50 border border-green-200 rounded-lg">
+                  <span class="font-semibold text-green-900">Total Price: $${state.duration === '60' ? '65.00' : '97.50'}</span>
+                </div>
               </div>
             </div>
 
             <div class="mb-6">
               <label class="block text-sm font-semibold mb-2">Select a Date</label>
-              <input type="date" id="date" value="${state.date}" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500" onchange="updateWeather()">
+              <input type="date" id="date" value="${state.date}" min="${new Date().toISOString().split('T')[0]}" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500" onchange="updateWeather()">
               ${state.weather ? `
                 <div class="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg flex items-center gap-3">
                   <div class="text-3xl">${state.weather.emoji}</div>
@@ -615,6 +629,9 @@
             ${state.showSlots ? `
               <div class="mb-6 p-4 bg-gray-50 rounded-lg">
                 <div class="font-semibold mb-3">Available times for ${state.date}:</div>
+                <div class="mb-3 p-3 bg-yellow-50 border border-yellow-300 rounded-lg text-sm text-yellow-800">
+                  ⏰ <strong>Business Hours:</strong> 8:00 AM - 8:00 PM. Slots outside these hours may require special arrangement.
+                </div>
                 <div class="flex flex-wrap gap-2">
                   ${timeSlots.map(slot => {
                     const booked = isSlotBooked(slot);
@@ -767,15 +784,19 @@
                     <div class="space-y-2">
                       <div class="flex justify-between items-center">
                         <span class="text-purple-800 font-semibold">Alex:</span>
-                        <a href="tel:+1234567890" class="text-purple-700 hover:text-purple-900 font-medium">(123) 456-7890</a>
+                        <a href="tel:+12677387290" class="text-purple-700 hover:text-purple-900 font-medium">(267) 738-7290</a>
                       </div>
                       <div class="flex justify-between items-center">
                         <span class="text-purple-800 font-semibold">Aaron Sandler:</span>
-                        <a href="tel:+1234567891" class="text-purple-700 hover:text-purple-900 font-medium">(123) 456-7891</a>
+                        <a href="tel:+12675755700" class="text-purple-700 hover:text-purple-900 font-medium">(267) 575-5700</a>
                       </div>
                       <div class="flex justify-between items-center">
                         <span class="text-purple-800 font-semibold">Mikkel Zinder:</span>
-                        <a href="tel:+1234567892" class="text-purple-700 hover:text-purple-900 font-medium">(123) 456-7892</a>
+                        <a href="tel:+12675755700" class="text-purple-700 hover:text-purple-900 font-medium">(267) 575-5700</a>
+                      </div>
+                      <div class="flex justify-between items-center">
+                        <span class="text-purple-800 font-semibold">Alan Pasternak (Stringing):</span>
+                        <a href="tel:+12154499148" class="text-purple-700 hover:text-purple-900 font-medium">(215) 449-9148</a>
                       </div>
                     </div>
                   </div>
@@ -901,12 +922,12 @@
               <h3 class="text-2xl font-bold mb-4">Ready to Get Your Racquet Strung?</h3>
               <p class="text-lg mb-6">Contact us to schedule your stringing service</p>
               <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="mailto:amtennis2005@gmail.com" class="bg-white text-blue-600 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition inline-block">
+                <a href="tel:+12154499148" class="bg-white text-blue-600 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition inline-block">
+                  📞 Call Alan: (215) 449-9148
+                </a>
+                <a href="mailto:amtennis2005@gmail.com" class="bg-white text-purple-600 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition inline-block">
                   ✉️ Email Us
                 </a>
-                <button onclick="switchView('contact')" class="bg-white text-purple-600 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition">
-                  📞 Contact Info
-                </button>
               </div>
             </div>
           </div>
@@ -1039,6 +1060,14 @@
       state.selectedSlot = null;
       state.message = { type: '', text: '' };
       render();
+      
+      // Auto-scroll to time slots
+      setTimeout(() => {
+        const slotsContainer = document.querySelector('.bg-gray-50.rounded-lg');
+        if (slotsContainer) {
+          slotsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
     };
 
     window.selectSlot = (slot) => {
@@ -1107,6 +1136,15 @@
       const infoElement = document.getElementById('coachInfo');
       if (infoElement) {
         infoElement.textContent = '🎾 ' + coachInfo[coach];
+      }
+    };
+
+    window.updatePrice = () => {
+      const duration = document.getElementById('duration').value;
+      const price = duration === '60' ? '65.00' : '97.50';
+      const priceDisplay = document.getElementById('priceDisplay');
+      if (priceDisplay) {
+        priceDisplay.innerHTML = `<span class="font-semibold text-green-900">Total Price: $${price}</span>`;
       }
     };
 
