@@ -220,7 +220,8 @@
       currentCoach: null,
       loginError: '',
       weather: null,
-      lastBooking: null
+      lastBooking: null,
+      showPolicy: null
     };
 
     // Load bookings
@@ -459,6 +460,238 @@
       }
     }
 
+    // Policy content
+    function getTermsOfService() {
+      return `
+        <div class="space-y-6">
+          <section>
+            <h3 class="text-xl font-bold mb-3">1. Agreement to Terms</h3>
+            <p class="text-gray-700">By booking a lesson with AM Tennis Academy, you agree to these Terms of Service. Please read them carefully before making a reservation.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">2. Services Provided</h3>
+            <p class="text-gray-700 mb-2">AM Tennis Academy offers:</p>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1">
+              <li>Private tennis lessons with Division 1 collegiate coaches</li>
+              <li>Professional racquet stringing services</li>
+              <li>Lessons conducted at Council Rock North High School Tennis Courts, 62 Swamp Rd, Newtown, PA 18940</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">3. Booking and Payment</h3>
+            <p class="text-gray-700 mb-2">Lesson Rates:</p>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1">
+              <li>60-minute lesson: $65</li>
+              <li>90-minute lesson: $97.50</li>
+            </ul>
+            <p class="text-gray-700 mt-3">Payment is accepted via Venmo (@AMTennis), Zelle (amtennis2005@gmail.com), or cash/check at the lesson. Payment can be made before or at the time of your lesson.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">4. Cancellation Policy</h3>
+            <p class="text-gray-700 mb-2">Cancellation fees apply as follows:</p>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1">
+              <li>60-minute lesson cancelled within 24 hours: $15 fee</li>
+              <li>90-minute lesson cancelled within 24 hours: $20 fee</li>
+              <li>No fee for cancellations made more than 24 hours before the scheduled lesson</li>
+            </ul>
+            <p class="text-gray-700 mt-3">To cancel, please contact us at amtennis2005@gmail.com or (267) 738-7290.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">5. Weather Policy</h3>
+            <p class="text-gray-700">Lessons may be cancelled or rescheduled due to inclement weather at the coach's discretion. No cancellation fee applies for weather-related cancellations initiated by the coach.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">6. Liability and Assumption of Risk</h3>
+            <p class="text-gray-700">Tennis is a physical activity that carries inherent risks. By participating, you acknowledge and accept these risks. AM Tennis Academy, its coaches, and affiliates are not liable for any injuries, losses, or damages that may occur during lessons or on the premises.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">7. Code of Conduct</h3>
+            <p class="text-gray-700 mb-2">Students are expected to:</p>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1">
+              <li>Arrive on time for scheduled lessons</li>
+              <li>Treat coaches and other students with respect</li>
+              <li>Follow safety guidelines and coach instructions</li>
+              <li>Respect court facilities and equipment</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">8. Modifications to Terms</h3>
+            <p class="text-gray-700">AM Tennis Academy reserves the right to modify these terms at any time. Changes will be effective immediately upon posting to our website.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">9. Contact Information</h3>
+            <p class="text-gray-700">
+              For questions about these terms, contact us at:<br>
+              Email: amtennis2005@gmail.com<br>
+              Phone: (267) 738-7290
+            </p>
+          </section>
+
+          <p class="text-sm text-gray-500 mt-8">Last updated: December 12, 2025</p>
+        </div>
+      `;
+    }
+
+    function getPrivacyPolicy() {
+      return `
+        <div class="space-y-6">
+          <section>
+            <h3 class="text-xl font-bold mb-3">1. Information We Collect</h3>
+            <p class="text-gray-700 mb-2">When you book a lesson, we collect:</p>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1">
+              <li>Name</li>
+              <li>Email address</li>
+              <li>Phone number (optional)</li>
+              <li>Lesson preferences (coach, date, time, duration)</li>
+              <li>Special notes or requests</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">2. How We Use Your Information</h3>
+            <p class="text-gray-700 mb-2">We use your information to:</p>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1">
+              <li>Process and confirm your lesson bookings</li>
+              <li>Send booking confirmations and calendar invitations</li>
+              <li>Communicate about lesson details, changes, or cancellations</li>
+              <li>Maintain booking records for business operations</li>
+              <li>Improve our services</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">3. Data Storage and Security</h3>
+            <p class="text-gray-700">Your booking information is securely stored using Google Firebase Firestore. We implement appropriate security measures to protect your personal information from unauthorized access, alteration, or disclosure.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">4. Email Communications</h3>
+            <p class="text-gray-700">We use EmailJS to send booking confirmations and notifications. Your email address is used solely for lesson-related communications and will not be shared with third parties for marketing purposes.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">5. Information Sharing</h3>
+            <p class="text-gray-700">We do not sell, trade, or rent your personal information to third parties. Your information is shared only with:</p>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1">
+              <li>Your assigned coach for lesson coordination</li>
+              <li>Service providers necessary for booking operations (Firebase, EmailJS)</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">6. Data Retention</h3>
+            <p class="text-gray-700">We retain your booking information for business record-keeping purposes. You may request deletion of your data by contacting us at amtennis2005@gmail.com.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">7. Your Rights</h3>
+            <p class="text-gray-700 mb-2">You have the right to:</p>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1">
+              <li>Access your personal information</li>
+              <li>Request correction of inaccurate information</li>
+              <li>Request deletion of your information</li>
+              <li>Opt out of promotional communications</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">8. Cookies and Tracking</h3>
+            <p class="text-gray-700">Our website uses minimal tracking. We use localStorage for coach authentication only. We do not use cookies for advertising or tracking purposes.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">9. Children's Privacy</h3>
+            <p class="text-gray-700">Our services are available to students of all ages. If you are booking on behalf of a minor, you consent to the collection and use of their information as described in this policy.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">10. Changes to This Policy</h3>
+            <p class="text-gray-700">We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the new policy on our website.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">11. Contact Us</h3>
+            <p class="text-gray-700">
+              For questions about this Privacy Policy or your personal information, contact us at:<br>
+              Email: amtennis2005@gmail.com<br>
+              Phone: (267) 738-7290
+            </p>
+          </section>
+
+          <p class="text-sm text-gray-500 mt-8">Last updated: December 12, 2025</p>
+        </div>
+      `;
+    }
+
+    function getCancellationPolicy() {
+      return `
+        <div class="space-y-6">
+          <section>
+            <h3 class="text-xl font-bold mb-3">Cancellation Fees</h3>
+            <p class="text-gray-700 mb-3">To ensure fair scheduling and compensate coaches for reserved time, the following cancellation fees apply:</p>
+            <div class="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4 mb-4">
+              <div class="font-semibold text-lg mb-2">Within 24 Hours of Lesson:</div>
+              <ul class="list-disc ml-6 text-gray-700 space-y-2">
+                <li><strong>60-minute lesson:</strong> $15 cancellation fee</li>
+                <li><strong>90-minute lesson:</strong> $20 cancellation fee</li>
+              </ul>
+            </div>
+            <div class="bg-green-50 border-2 border-green-300 rounded-lg p-4">
+              <div class="font-semibold text-lg mb-2">More Than 24 Hours Before Lesson:</div>
+              <p class="text-gray-700"><strong>No fee</strong> - Full refund or free rescheduling</p>
+            </div>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">How to Cancel</h3>
+            <p class="text-gray-700 mb-2">To cancel your lesson, please contact us as soon as possible:</p>
+            <ul class="list-disc ml-6 text-gray-700 space-y-1">
+              <li>Email: amtennis2005@gmail.com</li>
+              <li>Phone: (267) 738-7290</li>
+              <li>Text: (267) 738-7290</li>
+            </ul>
+            <p class="text-gray-700 mt-3">Please include your booking confirmation number in your cancellation request.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">Rescheduling</h3>
+            <p class="text-gray-700">If you need to reschedule (rather than cancel), the same 24-hour policy applies. Reschedules requested more than 24 hours in advance incur no fees.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">Weather Cancellations</h3>
+            <p class="text-gray-700 mb-2">Coach-Initiated: If your coach cancels due to weather, you will receive a full refund or free rescheduling with no fees.</p>
+            <p class="text-gray-700 mt-2">Student-Initiated: If you cancel due to weather concerns, standard cancellation fees apply. We recommend checking the weather forecast provided on the booking page.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">No-Shows</h3>
+            <p class="text-gray-700">If you do not arrive for your scheduled lesson and did not cancel in advance, you will be charged the full lesson price.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">Emergency Exceptions</h3>
+            <p class="text-gray-700">We understand that emergencies happen. In case of medical emergencies or unforeseen circumstances, please contact us to discuss your situation. We will work with you on a case-by-case basis.</p>
+          </section>
+
+          <section>
+            <h3 class="text-xl font-bold mb-3">Refund Processing</h3>
+            <p class="text-gray-700">If you are eligible for a refund, it will be processed using the same payment method within 5-7 business days.</p>
+          </section>
+
+          <p class="text-sm text-gray-500 mt-8">Last updated: December 12, 2025</p>
+        </div>
+      `;
+    }
+
     // Render function
     function render() {
       const app = document.getElementById('app');
@@ -560,16 +793,40 @@
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
                   <div>© ${new Date().getFullYear()} AM Tennis Academy. All rights reserved.</div>
                   <div class="flex gap-4">
-                    <a href="#" onclick="alert('Terms of Service page coming soon!'); return false;" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" onclick="showPolicyModal('terms'); return false;" class="hover:text-white transition">Terms of Service</a>
                     <span>•</span>
-                    <a href="#" onclick="alert('Privacy Policy page coming soon!'); return false;" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" onclick="showPolicyModal('privacy'); return false;" class="hover:text-white transition">Privacy Policy</a>
                     <span>•</span>
-                    <a href="#" onclick="alert('Cancellation Policy: $15 fee for 60min lessons, $20 fee for 90min lessons if cancelled within 24 hours.'); return false;" class="hover:text-white transition">Cancellation Policy</a>
+                    <a href="#" onclick="showPolicyModal('cancellation'); return false;" class="hover:text-white transition">Cancellation Policy</a>
                   </div>
                 </div>
               </div>
             </div>
           </footer>
+
+          <!-- Policy Modal -->
+          ${state.showPolicy ? `
+            <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onclick="closePolicyModal(event)">
+              <div class="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden" onclick="event.stopPropagation()">
+                <div class="bg-blue-600 text-white px-6 py-4 flex items-center justify-between">
+                  <h2 class="text-2xl font-bold">
+                    ${state.showPolicy === 'terms' ? 'Terms of Service' : 
+                      state.showPolicy === 'privacy' ? 'Privacy Policy' : 
+                      'Cancellation Policy'}
+                  </h2>
+                  <button onclick="closePolicyModal()" class="text-white hover:text-gray-200 text-3xl leading-none">&times;</button>
+                </div>
+                <div class="p-6 overflow-y-auto" style="max-height: calc(90vh - 80px);">
+                  ${state.showPolicy === 'terms' ? getTermsOfService() : 
+                    state.showPolicy === 'privacy' ? getPrivacyPolicy() : 
+                    getCancellationPolicy()}
+                </div>
+                <div class="bg-gray-50 px-6 py-4 flex justify-end border-t">
+                  <button onclick="closePolicyModal()" class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition">Close</button>
+                </div>
+              </div>
+            </div>
+          ` : ''}
         </div>
       `;
     }
@@ -1202,6 +1459,18 @@
         render();
       } else {
         state.loginError = 'Invalid username or password';
+        render();
+      }
+    };
+
+    window.showPolicyModal = (policyType) => {
+      state.showPolicy = policyType;
+      render();
+    };
+
+    window.closePolicyModal = (event) => {
+      if (!event || event.target === event.currentTarget) {
+        state.showPolicy = null;
         render();
       }
     };
