@@ -843,17 +843,20 @@
         'Alex': {
           name: 'Alex Sterin',
           title: 'Division 1 tennis player @ Penn State',
-          photo: 'https://media.licdn.com/dms/image/v2/D4E03AQHaDbeOBH_N_A/profile-displayphoto-crop_800_800/B4EZo6nxDiHMAI-/0/1761920095274?e=1767225600&v=beta&t=9IoAGCCzSVrwsmYFLauR4-zQf1gQICG-S_JZwLXMqXY'
+          photo: 'https://media.licdn.com/dms/image/v2/D4E03AQHaDbeOBH_N_A/profile-displayphoto-crop_800_800/B4EZo6nxDiHMAI-/0/1761920095274?e=1767225600&v=beta&t=9IoAGCCzSVrwsmYFLauR4-zQf1gQICG-S_JZwLXMqXY',
+          instagram: 'https://www.instagram.com/alexsterin205/?hl=en'
         },
         'Aaron': {
           name: 'Aaron Sandler',
           title: 'Division 1 Tennis Player at Penn',
-          photo: 'https://pennathletics.com/images/2025/9/9/Aaron_Sandler_Crooped.jpg'
+          photo: 'https://pennathletics.com/images/2025/9/9/Aaron_Sandler_Crooped.jpg',
+          instagram: 'https://www.instagram.com/asandler05/'
         },
         'Mikkel': {
           name: 'Mikkel Zinder',
           title: 'Division 1 Tennis Player at Dayton',
-          photo: 'https://i.imgur.com/4unb6ao.jpg'
+          photo: 'https://i.imgur.com/4unb6ao.jpg',
+          instagram: 'https://www.instagram.com/mikkelzinder/?hl=en'
         }
       };
       
@@ -869,7 +872,7 @@
                     <img src="${coachInfo[coach].photo}" alt="${coachInfo[coach].name}" class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-blue-500 shadow-lg">
                   </div>
                   <h3 class="text-xl font-bold mb-2">${coachInfo[coach].name}</h3>
-                  <a href="#" onclick="event.stopPropagation(); alert('Instagram URL coming soon!'); return false;" class="text-pink-500 hover:text-pink-600 text-2xl" title="Instagram">📸</a>
+                  <a href="${coachInfo[coach].instagram}" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="text-pink-500 hover:text-pink-600 text-2xl" title="Follow on Instagram">📸</a>
                   <p class="text-sm text-gray-600 mb-3 mt-2">🎾 ${coachInfo[coach].title}</p>
                   <button class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition">
                     Book with ${coach}
