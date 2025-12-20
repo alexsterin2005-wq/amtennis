@@ -221,42 +221,44 @@
         'clinic': { name: 'Clinic', price: 35, duration: 90, times: ['Mon 6:00 PM','Wed 6:00 PM','Sat 9:00 AM','Sat 2:00 PM'] }
       },
       calendarEvents: [] // {id, type, title, date, time, price, description}
-        // Firestore storage for calendar events
-        const calendarEventStorage = {
-          async getAll() {
-            try {
-              const snapshot = await db.collection('calendarEvents').get();
-              const events = [];
-              snapshot.forEach(doc => {
-                events.push({ id: doc.id, ...doc.data() });
-              });
-              return events;
-            } catch (error) {
-              console.error('Error getting calendar events:', error);
-              return [];
-            }
-          },
-          async add(eventData) {
-            try {
-              const ref = db.collection('calendarEvents').doc();
-              await ref.set({ ...eventData, id: ref.id });
-              return ref.id;
-            } catch (error) {
-              console.error('Error adding calendar event:', error);
-              return null;
-            }
-          },
-          async delete(eventId) {
-            try {
-              await db.collection('calendarEvents').doc(eventId).delete();
-              return true;
-            } catch (error) {
-              console.error('Error deleting calendar event:', error);
-              return false;
-            }
-          }
-        };
+        // ...existing code...
     };
+
+  // Firestore storage for calendar events (moved outside state)
+  const calendarEventStorage = {
+    async getAll() {
+      try {
+        const snapshot = await db.collection('calendarEvents').get();
+        const events = [];
+        snapshot.forEach(doc => {
+          events.push({ id: doc.id, ...doc.data() });
+        });
+        return events;
+      } catch (error) {
+        console.error('Error getting calendar events:', error);
+        return [];
+      }
+    },
+    async add(eventData) {
+      try {
+        const ref = db.collection('calendarEvents').doc();
+        await ref.set({ ...eventData, id: ref.id });
+        return ref.id;
+      } catch (error) {
+        console.error('Error adding calendar event:', error);
+        return null;
+      }
+    },
+    async delete(eventId) {
+      try {
+        await db.collection('calendarEvents').doc(eventId).delete();
+        return true;
+      } catch (error) {
+        console.error('Error deleting calendar event:', error);
+        return false;
+      }
+    }
+  };
 
     // Set lesson type handler
     window.setLessonType = (type) => {
@@ -779,8 +781,8 @@
           <header class="bg-black text-white py-6 px-4 shadow-lg">
             <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-4">
               <div>
-                <h1 class="text-3xl font-bold">AM Tennis Academy</h1>
-                <p class="text-gray-400 text-sm mt-1">Book a private lesson with Iskander Karimov</p>
+                <h1 class="text-3xl font-bold text-blue-600">Isa</h1>
+                <p class="text-blue-600 text-sm mt-1 font-bold">Book a private lesson with Isa</p>
               </div>
               <div class="flex gap-2 flex-wrap">
                 <button onclick="switchView('booking')" class="px-6 py-2 rounded-full font-semibold transition ${state.view === 'booking' ? 'bg-white text-black' : 'bg-gray-800 text-white hover:bg-gray-700'}">
@@ -821,8 +823,8 @@
             <div class="max-w-7xl mx-auto">
               <div class="grid md:grid-cols-3 gap-8 mb-6">
                 <div>
-                  <h3 class="text-xl font-bold mb-3">AM Tennis Academy</h3>
-                  <p class="text-gray-400 text-sm">Professional tennis coaching with Division 1 college players in Newtown, PA</p>
+                  <h3 class="text-xl font-bold mb-3 text-red-600">Isa</h3>
+                  <p class="text-red-600 text-sm font-bold">Professional tennis coaching in Newtown, PA</p>
                 </div>
                 <div>
                   <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
@@ -926,16 +928,16 @@
         <div class="max-w-6xl mx-auto p-6">
           <!-- Meet Our Coaches Section -->
           <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
-            <h2 class="text-3xl font-bold mb-6 text-center">Meet Our Coaches</h2>
+            <h2 class="text-3xl font-bold mb-6 text-center text-blue-600">Meet Isa</h2>
             <div class="grid md:grid-cols-1 gap-6">
               <div class="text-center p-4 rounded-lg hover:bg-gray-50 transition cursor-pointer">
                 <div class="mb-4">
-                  <img src="https://i.imgur.com/9sGRpzs.jpg" alt="Iskander Karimov" class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-blue-500 shadow-lg">
+                  <img src="https://i.imgur.com/9sGRpzs.jpg" alt="Isa" class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-blue-600 shadow-lg">
                 </div>
-                <h3 class="text-xl font-bold mb-2">Iskander Karimov</h3>
-                <p class="text-sm text-gray-600 mb-3 mt-2">🎾 Division 1 Tennis Player</p>
+                <h3 class="text-xl font-bold mb-2 text-blue-600">Isa</h3>
+                <p class="text-sm text-blue-600 mb-3 mt-2 font-bold">🎾 Tennis Coach</p>
                 <button class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition">
-                  Book with Iskander Karimov
+                  Book with Isa
                 </button>
               </div>
             </div>
